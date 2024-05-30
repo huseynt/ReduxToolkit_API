@@ -1,0 +1,9 @@
+export const api = {
+    baseURL: "https://project-55919f.apibrew.io:8443/storage",
+    config: {
+        headers: {
+          'accept': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tL2FwaWJyZXcvYXBpYnJldyIsInN1YiI6ImNvbnRyb2xsZXIiLCJhdWQiOlsiZ2l0aHViLmNvbS9hcGlicmV3L2FwaWJyZXciXSwiZXhwIjoxNzIyMjc0MjA4LCJuYmYiOjE3MTcwOTAyMDgsImlhdCI6MTcxNzA5MDIwOCwianRpIjoiM2M1ZjUyOTEtMWI1Ni00OGVhLWI4ZTQtYzZiNDU1ZGE3NDI5IiwidXNlcm5hbWUiOiJjb250cm9sbGVyIiwidWlkIjoiZmU1NWU4M2YtNmJkNi00MzgzLTk3ZjgtMzVmMWYwY2NhYzA5Iiwic2NvcGVzIjpbIjo6RlVMTDo6Ojo6OkFMTE9XIl0sInBlcm1pc3Npb25zIjpbeyJpZCI6ImE5OTU2ZjZhLTY2N2EtNDM4ZC05Y2ZjLTgwMDdmYjQyZjRjYiIsInZlcnNpb24iOjEsIm9wZXJhdGlvbiI6IkZVTEwiLCJwZXJtaXQiOiJBTExPVyJ9LHsiaWQiOiJhOTk1NmY2YS02NjdhLTQzOGQtOWNmYy04MDA3ZmI0MmY0Y2IiLCJ2ZXJzaW9uIjoxLCJvcGVyYXRpb24iOiJGVUxMIiwicGVybWl0IjoiQUxMT1cifV19.t7xGd-5u6DDAf0xZLpvixyqYhjz2I-gPmwE2N9QZ3V_-dZ7EBr8X7u7C3qni_S0slZHKTQ5-2qRfWaRz67P_ue7RNBmq0zt2A4HcPOM7AGmXkfeyrNyO5f0CxNKpO7PRQIvvpRjtkFHvuCBuCg1sWBTT3uHW6BbfNZfQuBeacbk'
+        }
+      }
+}

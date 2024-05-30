@@ -1,0 +1,39 @@
+.section {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px;
+    padding: 5px 50px;
+    background-color: #585858;
+    border-radius: 7px;
+
+    div {
+        background-color: transparent;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        &:hover {
+            color: #8ac7fc;
+        }
+    }
+}
+
+.money {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 10px 10px;
+    background-color: #585858;
+    border-radius: 7px;
+
+    div {
+        background: transparent;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+    }
+}

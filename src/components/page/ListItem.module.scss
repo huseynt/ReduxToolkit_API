@@ -1,0 +1,29 @@
+.list {
+    background-color: #4c4c4c;
+    text-align: center;
+    margin: 5px 20px;
+    padding:10px 20px 10px 7%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 7px;
+    color: white;
+
+    .name {
+        background-color: initial;
+    }
+
+    .price {
+        display: flex;
+        background-color: transparent;
+        
+        div {
+            margin: 0  0 0 20px;
+            background-color: transparent;
+        }
+        .close {
+            color: #d64949;
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+}

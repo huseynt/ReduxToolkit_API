@@ -1,0 +1,25 @@
+.item {
+    background-color: #585858;
+    height: 180px;
+    margin: 20px;
+    text-align: center;
+    font-size: 27px;
+    color: white;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+
+    input {
+        color: white;
+        padding: 6px 5px;
+        border-radius: 7px;
+    }
+    .enough {
+        margin: 0;
+        padding: 0;
+        height: 20px;
+        font-size: 12px;
+        background-color: transparent;
+        color: #f48e8eb2;
+    }
+}
