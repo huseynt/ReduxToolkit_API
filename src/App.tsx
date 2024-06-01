@@ -23,6 +23,10 @@ function App() {
   const balance = money - expenseList.reduce((sum:number,item:Expense)=> sum+(+item.price),0)
 
   const navigate = useNavigate()
+  
+  const handleCareer = () => {
+    navigate('/career')
+  }
   const handleAbout = () => {
     navigate('/about')
   }
@@ -54,25 +58,35 @@ function App() {
 
   return (
     <div className={style.section}>
+
+
       <div className={style.nav}>
         <div onClick={handleHome}>Home</div>
         <div onClick={handleAbout}>About</div>
-        <div>Career</div>
+        <div onClick={handleCareer}>Career</div>
       </div>
 
       <Routes>
-        <Route path='/about' element={<Item/>}/>
+        <Route path='/about' element={
+          <>
+            <Item/>
+            {expenseList.map((i:any) => { return <ListItem key={i.id} id={i.id} name={i.name} price={i.price}/>})}
+
+            <div className={style.money}>
+              <div>Balance: {balance}$</div>
+              <div>Total: {cost}$</div>
+            </div>
+          </>
+          
+          }/>
         <Route path='*'/>
+
+        <Route path='/career' element={<div style={{color: "white", textAlign: "center"}}>Not Found</div>}/>
+
       </Routes>
-    
+  
 
-    {/* <Item/> */}
-    {expenseList.map((i:any) => { return <ListItem key={i.id} id={i.id} name={i.name} price={i.price}/>} )}
 
-    <div className={style.money}>
-      <div>Balance: {balance}$</div>
-      <div>Total: {cost}$</div>
-    </div>
     </div>
   )
 }
