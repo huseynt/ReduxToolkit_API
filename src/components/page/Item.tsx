@@ -4,20 +4,19 @@ import { addExpense } from '../../store/expense/expenseSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import Axios from 'axios'
 import {api} from '../../API/api'
+import {ExpenseState, Expense} from '../../utils/interface/expenseSlice'
 
 
-
-const Item = (props) => {
-  const {reload} = props
+const Item = () => {
 
   const dispatch = useDispatch();
-  const [data,setData] = useState<object>({})
+  const [data,setData] = useState<Expense>({id: 0, name: "", price: 0})
 
-  const expenseList = useSelector((state:any) => state.expenses)
-  const money = useSelector((state:any)=> state.income)
-  const balance = money - expenseList.reduce((sum:any,item:any)=> sum+(+item.price),0)
+  const expenseList: Expense[]= useSelector((state:ExpenseState) => state.expenses)
+  const money = useSelector((state:ExpenseState)=> state.income)
+  const balance = money - expenseList.reduce((sum,item)=> sum+(+item.price),0)
 
-  const onChange = (e:any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({
       id: expenseList.length+1,
       name: e.target.name=="name" ? e.target.value : data.name,
@@ -25,20 +24,19 @@ const Item = (props) => {
     })
   }
 
-  const submit = (e:any)=> {
+  const submit = (e: React.MouseEvent<HTMLDivElement>)=> {
     if(!!data.name && !!data.price && +data.price<=balance) {
       e.preventDefault()
-      dispatch(addExpense( data ))
       fetchData()
-      reset()
+      // reset()
     }
   }
 
-  const reset = ()=> {
-    document.querySelector("#text").value=""
-    document.querySelector("#price").value=""
-    setData({})
-  }
+  // const reset = ()=> {
+  //   document.querySelector("#text").value=""
+  //   document.querySelector("#price").value=""
+  //   setData({})
+  // }
 // --------------------------Axios post---------------------------------
   async function fetchData() {
     try {
@@ -46,7 +44,11 @@ const Item = (props) => {
         api.baseURL,
         data,
         api.config
-      )
+      ).then((response)=> dispatch(addExpense({
+        id: response.data.id,
+        name: response.data.name,
+        price: response.data.price
+      })))
     }
     catch (error) {
       console.log(error)
@@ -63,10 +65,10 @@ const Item = (props) => {
     <form  className={style.item}>
       <input onChange={onChange} type="text" name="name" id="text" placeholder='name'/>
       <div className={style.enough}>
-        <input onChange={onChange} type="text" name="price" id="price" placeholder='price'/><br/>
+        <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)} type="text" name="price" id="price" placeholder='price'/><br/>
         {+data.price>balance && "you don`t have enough money"}
       </div>
-      <input onClick={submit} type="button" value="SUBMIT"/>
+      <input onClick={(e: React.MouseEvent<HTMLDivElement>) => submit(e)} type="button" value="SUBMIT"/>
     </form>
   )
 }

@@ -1,24 +1,32 @@
 import style from './ListItem.module.scss'
-import { useSelector } from 'react-redux'
 import Axios from 'axios'
 import {api} from '../../API/api'
+import { useDispatch } from "react-redux";
+import { deleteState } from "../../store/expense/expenseSlice";
 
-const ListItem = (props:any) => {
-  const {name, price, id, reload} = props
-  const expenseList = useSelector((state:any) => state.expenses)
+interface iList {
+  key: string;
+  id: string;
+  name: string;
+  price: number
+}
 
-  const close = (e:any) => {
-    const key = e.target.id
+const ListItem = (props:iList) => {
+  const dispatch = useDispatch();
+  const {name, price, id} = props
+
+  const close = (e: React.MouseEvent<HTMLDivElement>) => {
+    const key = e.currentTarget.id
     deleteData(key)
   }
 
   // ------------- axios delete ----------------------------
-  async function deleteData(id:any) {
+  async function deleteData(id:string) {
     try {
       Axios.delete(
         `${api.baseURL}/${id}`,
         api.config
-        ).then(()=> reload())
+        ).then(()=> dispatch(deleteState(id)))
     } 
     catch (error) {
       console.log(error)
@@ -34,7 +42,7 @@ const ListItem = (props:any) => {
       <div className={style.price}>
         <div>Price: {price}$</div>
         
-        <div className={style.close} onClick={close} id={id}>X</div>
+        <div className={style.close} onClick={(e: React.MouseEvent<HTMLDivElement>) => close(e)} id={id}>X</div>
       </div>
 
     </div>

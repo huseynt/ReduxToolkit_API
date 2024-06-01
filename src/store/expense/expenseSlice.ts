@@ -2,26 +2,40 @@ import { createSlice } from "@reduxjs/toolkit";
 import { combineReducers } from '@reduxjs/toolkit'
 const rootReducer = combineReducers({})
 export type RootState = ReturnType<typeof rootReducer>
+import {ExpenseState} from '../../utils/interface/expenseSlice'
+
+// interface ExpenseState {
+//     income: number;
+//     expenses: Expense[];
+//   }
+// interface Expense {
+//     id: string;
+//     name: string;
+//     price: number
+//   }
 
 
 const expenseSlice = createSlice({
     name: "expense",
-    initialState: {
+    initialState: <ExpenseState>{
         income: 10000,
-        expenses: []
+        expenses:[]
     },
     reducers: {
         addExpense: (state, action)=> {
             state.expenses.push(action.payload)
         },
         changeIncome: (state, action)=> {
-            state.income = 70000;
+            state.income = action.payload;
         },
-        resetState: (state,action) => {
+        resetState: (state) => {
             state.income = 10000;
             state.expenses = [];
+        },
+        deleteState: (state,action) => {
+            state.expenses= state.expenses.filter((item) => item.id!==action.payload)
         }
     },
 })
 export default expenseSlice.reducer;
-export const {addExpense,changeIncome, resetState} = expenseSlice.actions
+export const {addExpense,changeIncome, resetState, deleteState} = expenseSlice.actions
