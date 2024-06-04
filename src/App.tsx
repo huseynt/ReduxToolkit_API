@@ -14,7 +14,6 @@ import {api} from './API/api'
 import {ExpenseState, Expense} from './utils/interface/expenseSlice'
 
 
-
 function App() {
   const expenseList = useSelector((state:ExpenseState) => state.expenses)
   console.log(expenseList)
@@ -36,24 +35,30 @@ function App() {
 
   //--------------------------Axios get----------------------------------------
   const dispatch = useDispatch();
-  async function getData() {
-    dispatch(resetState())
-    try {
-      Axios.get( 
-        api.baseURL,
-        api.config
-      )
-      .then((item:any) => {item.data.content.map((item:any)=> dispatch(addExpense(item)) )})
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+
   useEffect(()=> {
+    async function getData() {
+      dispatch(resetState())
+      try {
+        Axios.get( 
+          api.baseURL,
+          api.config
+        )
+        .then((item:any) => {item.data.content.map((item:any)=> dispatch(addExpense(item)) )})
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
     return () => {
-      getData()
+      if (!expenseList.length) {
+        getData()
+      }
     }
   },[])
+
+
+
 
 
   return (
