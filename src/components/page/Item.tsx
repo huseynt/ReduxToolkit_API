@@ -28,6 +28,7 @@ const Item = () => {
     if(!!data.name && !!data.price && +data.price<=balance) {
       e.preventDefault()
       fetchData()
+
       // reset()
     }
   }

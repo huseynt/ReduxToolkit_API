@@ -29,44 +29,42 @@ function App() {
   const handleAbout = () => {
     navigate('/about')
   }
-  const handleHome = () => {
-    navigate('/')
-  }
+  // const handleHome = () => {
+  //   navigate('/')
+  // }
 
   //--------------------------Axios get----------------------------------------
   const dispatch = useDispatch();
 
-  useEffect(()=> {
-    async function getData() {
-      dispatch(resetState())
-      try {
-        Axios.get( 
-          api.baseURL,
-          api.config
-        )
-        .then((item:any) => {item.data.content.map((item:any)=> dispatch(addExpense(item)) )})
-      }
-      catch (error) {
-        console.log(error)
-      }
+  async function getData() {
+    dispatch(resetState())
+    try {
+      Axios.get( 
+        api.baseURL,
+        api.config
+      )
+      .then((item:any) => {item.data.content.map((item:any)=> dispatch(addExpense(item)) )})
     }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(()=> {
+
     return () => {
-      if (!expenseList.length) {
+      if (expenseList.length==0) {
         getData()
       }
     }
   },[])
-
-
-
-
 
   return (
     <div className={style.section}>
 
 
       <div className={style.nav}>
-        <div onClick={handleHome}>Home</div>
+        <div>Home</div>
         <div onClick={handleAbout}>Check List</div>
         <div onClick={handleCareer}>Reset</div>
       </div>
@@ -75,9 +73,7 @@ function App() {
 
       <Routes>
         <Route path='/about' element={
-          <div>
-            {expenseList.map((i:any) => { return <ListItem key={i.id} id={i.id} name={i.name} price={i.price}/>})}
-          </div>
+            expenseList.map((i:any) => { return <ListItem key={i.id} id={i.id} name={i.name} price={i.price}/>})
           }/>
 
         <Route path='/career' element={<div style={{color: "white", textAlign: "center"}}>Not Found</div>}/>
