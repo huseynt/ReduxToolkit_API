@@ -62,28 +62,26 @@ function App() {
 
       <div className={style.nav}>
         <div onClick={handleHome}>Home</div>
-        <div onClick={handleAbout}>About</div>
-        <div onClick={handleCareer}>Career</div>
+        <div onClick={handleAbout}>Check List</div>
+        <div onClick={handleCareer}>Reset</div>
       </div>
+
+      <Item/>
 
       <Routes>
         <Route path='/about' element={
           <div>
-            <Item/>
             {expenseList.map((i:any) => { return <ListItem key={i.id} id={i.id} name={i.name} price={i.price}/>})}
-
-            <div className={style.money}>
-              <div>Balance: {balance}$</div>
-              <div>Total: {cost}$</div>
-            </div>
           </div>
-          
           }/>
 
         <Route path='/career' element={<div style={{color: "white", textAlign: "center"}}>Not Found</div>}/>
-
       </Routes>
   
+      <div className={style.money}>
+          <div>Balance: {balance}$</div>
+          <div>Total: {cost}$</div>
+      </div>
 
 
     </div>
