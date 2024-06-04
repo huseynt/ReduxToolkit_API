@@ -68,7 +68,7 @@ function App() {
 
       <Routes>
         <Route path='/about' element={
-          <>
+          <div>
             <Item/>
             {expenseList.map((i:any) => { return <ListItem key={i.id} id={i.id} name={i.name} price={i.price}/>})}
 
@@ -76,10 +76,9 @@ function App() {
               <div>Balance: {balance}$</div>
               <div>Total: {cost}$</div>
             </div>
-          </>
+          </div>
           
           }/>
-        <Route path='*'/>
 
         <Route path='/career' element={<div style={{color: "white", textAlign: "center"}}>Not Found</div>}/>
 
