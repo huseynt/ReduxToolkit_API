@@ -1,5 +1,6 @@
 .item {
-    background-color: #585858;
+    background-color: #1c1f26;
+    border: .5px solid #383d47;
     height: 180px;
     margin: 20px;
     text-align: center;
@@ -11,7 +12,7 @@
 
     input {
         color: white;
-        padding: 6px 5px;
+        padding: 6px 10px;
         border-radius: 7px;
     }
     .enough {

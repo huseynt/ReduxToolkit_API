@@ -5,5 +5,7 @@ export interface ExpenseState {
 export interface Expense {
   id: string | number;
   name: string;
-  price: number
+  price: number;
+  type: string;
+  version: number
 }

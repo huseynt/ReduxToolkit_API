@@ -1,5 +1,5 @@
 import style from './App.module.css'
-import Item from './components/page/Item'
+import Item from './components/page/Form'
 import ListItem from './components/page/ListItem'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,10 +13,12 @@ import { addExpense, resetState } from './store/expense/expenseSlice'
 import {api} from './API/api'
 import {ExpenseState, Expense} from './utils/interface/expenseSlice'
 
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 
 function App() {
   const expenseList = useSelector((state:ExpenseState) => state.expenses)
-  console.log(expenseList)
+  console.log("Redux",expenseList)
   const cost = expenseList.reduce((sum:number,item:Expense)=> sum+(+item.price),0)
   const money = useSelector((state:ExpenseState)=> state.income)
   const balance = money - expenseList.reduce((sum:number,item:Expense)=> sum+(+item.price),0)
@@ -60,8 +62,10 @@ function App() {
   },[])
 
   return (
-    <div className={style.section}>
-
+    <div className={style.section} css={css`
+      width: 100%;
+      font-family: "Open Sans", sans-serif;
+    `}>
 
       <div className={style.nav}>
         <div>Home</div>
@@ -83,7 +87,6 @@ function App() {
           <div>Balance: {balance}$</div>
           <div>Total: {cost}$</div>
       </div>
-
 
     </div>
   )

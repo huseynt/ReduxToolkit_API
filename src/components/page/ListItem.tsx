@@ -4,6 +4,7 @@ import {api} from '../../API/api'
 import { useDispatch } from "react-redux";
 import { deleteState } from "../../store/expense/expenseSlice";
 
+
 interface iList {
   key: string;
   id: string;
@@ -41,10 +42,8 @@ const ListItem = (props:iList) => {
 
       <div className={style.price}>
         <div>Price: {price}$</div>
-        
         <div className={style.close} onClick={(e: React.MouseEvent<HTMLDivElement>) => close(e)} id={id}>X</div>
       </div>
-
     </div>
   )
 }

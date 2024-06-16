@@ -8,8 +8,9 @@
     justify-content: space-between;
     margin: 10px 20px;
     padding: 5px 50px;
-    background-color: #585858;
+    background-color: #1c1f26;
     border-radius: 7px;
+    border: .5px solid #383d47;
 
     div {
         background-color: transparent;
@@ -27,7 +28,8 @@
     justify-content: space-between;
     margin: 20px;
     padding: 10px 10px;
-    background-color: #585858;
+    background-color: #1c1f26;
+    border: .5px solid #383d47;
     border-radius: 7px;
 
     div {

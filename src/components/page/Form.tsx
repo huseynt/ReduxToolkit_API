@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import style from './Item.module.scss'
+import style from './Form.module.scss'
 import { addExpense } from '../../store/expense/expenseSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import Axios from 'axios'
 import {api} from '../../API/api'
 import {ExpenseState, Expense} from '../../utils/interface/expenseSlice'
+
 
 
 const Item = () => {
@@ -64,12 +65,12 @@ const Item = () => {
 
   return (
     <form  className={style.item}>
-      <input onChange={onChange} type="text" name="name" id="text" placeholder='name'/>
+      <input className="text-sm" onChange={onChange} type="text" name="name" id="text" placeholder='name'/>
       <div className={style.enough}>
-        <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)} type="text" name="price" id="price" placeholder='price'/><br/>
+        <input className="text-sm" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)} type="text" name="price" id="price" placeholder='price'/><br/>
         {+data.price>balance && "you don`t have enough money"}
       </div>
-      <input onClick={(e: React.MouseEvent<HTMLDivElement>) => submit(e)} type="button" value="SUBMIT"/>
+      <input className="text-base bg-[#0e1217] text-white rounded-full hover:bg-black" onClick={(e: React.MouseEvent<HTMLDivElement>) => submit(e)} type="button" value="SUBMIT"/>
     </form>
   )
 }
